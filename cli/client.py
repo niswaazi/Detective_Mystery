@@ -30,6 +30,9 @@ def receive():
                 4096
             ).decode()
 
+            if not message:
+                break
+
             print(
                 "\n" + message
             )
@@ -37,7 +40,7 @@ def receive():
         except:
 
             print(
-                "Koneksi terputus."
+                "\nKoneksi terputus."
             )
 
             break
@@ -47,11 +50,37 @@ def send():
 
     while True:
 
-        msg = input("> ")
+        try:
 
-        client.send(
-            msg.encode()
-        )
+            msg = input("> ")
+
+            if msg.lower() == "exit":
+
+                client.send(
+                    "exit".encode()
+                )
+
+                print(
+                    "Keluar dari permainan..."
+                )
+
+                client.close()
+
+                break
+
+            client.send(
+                msg.encode()
+            )
+
+        except KeyboardInterrupt:
+
+            print(
+                "\nKeluar dari permainan..."
+            )
+
+            client.close()
+
+            break
 
 
 threading.Thread(

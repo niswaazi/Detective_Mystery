@@ -16,7 +16,9 @@ def broadcast(message):
 
         try:
 
-            client.send(message.encode())
+            client.send(
+                message.encode()
+            )
 
         except:
 
@@ -31,7 +33,9 @@ def handle(client):
 
         try:
 
-            message = client.recv(1024).decode()
+            message = client.recv(
+                1024
+            ).decode()
 
             if not message:
 
@@ -58,6 +62,14 @@ Ketik help untuk melihat command.
                 )
 
                 continue
+
+            if message == "exit":
+
+                broadcast(
+                    f"{username} keluar dari permainan."
+                )
+
+                break
 
             if message == "help":
 
@@ -127,7 +139,9 @@ Ketik help untuk melihat command.
 
                 if correct:
 
-                    broadcast(result)
+                    broadcast(
+                        result
+                    )
 
                 else:
 
@@ -145,6 +159,10 @@ Ketik help untuk melihat command.
 
         clients.remove(client)
 
+    if client in usernames:
+
+        del usernames[client]
+
     client.close()
 
 
@@ -153,7 +171,9 @@ server = socket.socket(
     socket.SOCK_STREAM
 )
 
-server.bind((HOST, PORT))
+server.bind(
+    (HOST, PORT)
+)
 
 server.listen()
 

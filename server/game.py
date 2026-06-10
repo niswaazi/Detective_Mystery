@@ -8,7 +8,6 @@ scores = {}
 def create_player(name):
 
     inventories[name] = []
-
     scores[name] = 0
 
 
@@ -31,9 +30,12 @@ chat <pesan>
 
 accuse <nama>
 
+exit
+
 Contoh:
 go Laboratorium
 accuse Andi
+exit
 """
 
 
@@ -59,7 +61,6 @@ def investigate(player, location):
     if clue not in inventories[player]:
 
         inventories[player].append(clue)
-
         scores[player] += 10
 
     return clue
