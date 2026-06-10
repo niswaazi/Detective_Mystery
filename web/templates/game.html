@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Investigasi</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Petunjuk Kasus</h1>
+
+    <ul>
+
+        {% for clue in clues %}
+
+        <li>{{ clue }}</li>
+
+        {% endfor %}
+
+    </ul>
+
+    <form action="/accuse" method="POST">
+
+        <h2>Tuduh Pelaku</h2>
+
+        <input
+            type="text"
+            name="suspect"
+            placeholder="Nama tersangka">
+
+        <button type="submit">
+            Tuduh
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
