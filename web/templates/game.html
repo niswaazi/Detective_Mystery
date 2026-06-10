@@ -1,43 +1,252 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Investigasi</title>
-    <link rel="stylesheet"
-          href="{{ url_for('static',
-          filename='css/style.css') }}">
+
+<meta charset="UTF-8">
+
+<title>Detective Mystery RPG</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+rel="stylesheet">
+
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>Petunjuk Kasus</h1>
+<h1>
+🕵 DETECTIVE MYSTERY
+<br>
+⭐ CASE FILE #001 ⭐
+</h1>
 
-    <ul>
+<div class="game-layout">
 
-        {% for clue in clues %}
+    <!-- KIRI -->
+    <div class="map-panel">
 
-        <li>{{ clue }}</li>
-
-        {% endfor %}
-
-    </ul>
-
-    <form action="/accuse" method="POST">
-
-        <h2>Tuduh Pelaku</h2>
+        <h3>🗺 LOKASI INVESTIGASI</h3>
 
         <input
-            type="text"
-            name="suspect"
-            placeholder="Nama tersangka">
+        type="hidden"
+        id="location">
 
-        <button type="submit">
-            Tuduh
+        <div class="map-grid">
+
+            <div class="map-tile"
+                 onclick="selectLocation(this,'Laboratorium')">
+
+                🧪
+                <br>
+                Laboratorium
+
+            </div>
+
+            <div class="map-tile"
+                 onclick="selectLocation(this,'Kantor')">
+
+                🏢
+                <br>
+                Kantor
+
+            </div>
+
+            <div class="map-tile"
+                 onclick="selectLocation(this,'Perpustakaan')">
+
+                📚
+                <br>
+                Perpustakaan
+
+            </div>
+
+            <div class="map-tile"
+                 onclick="selectLocation(this,'Kantin')">
+
+                🍔
+                <br>
+                Kantin
+
+            </div>
+
+            <div class="map-tile"
+                 onclick="selectLocation(this,'Parkiran')">
+
+                🚗
+                <br>
+                Parkiran
+
+            </div>
+
+        </div>
+
+        <button onclick="investigateLocation()">
+            INVESTIGASI
         </button>
 
-    </form>
+        <br><br>
+
+        <h3>🔎 PETUNJUK TERBARU</h3>
+
+        <div id="clue-box">
+            Pilih lokasi terlebih dahulu...
+        </div>
+
+        <br>
+
+        <h3>📷 FOTO LOKASI</h3>
+
+        <div class="location-preview">
+
+            <img
+            id="location-image"
+            src="{{ url_for('static', filename='images/Laboratorium.jpg') }}"
+            alt="Lokasi">
+
+        </div>
+
+    </div>
+
+    <!-- KANAN -->
+    <div class="side-panel">
+
+        <div class="detective-icon">
+            🕵️
+        </div>
+
+        <h3>DETEKTIF</h3>
+
+        <input
+        type="text"
+        id="username"
+        placeholder="Nama Detektif">
+
+        <button onclick="loginPlayer()">
+            LOGIN
+        </button>
+
+        <hr>
+
+        <h3>⭐ SKOR</h3>
+
+        <div id="score">
+            0
+        </div>
+
+        <hr>
+
+        <h3>💬 CHAT</h3>
+
+        <div id="chat-box"></div>
+
+        <input
+        type="text"
+        id="message"
+        placeholder="Ketik pesan">
+
+        <button onclick="sendMessage()">
+            KIRIM
+        </button>
+
+        <hr>
+
+        <h3>📜 INVENTORY</h3>
+
+        <div id="inventory">
+            Belum ada petunjuk
+        </div>
+
+        <button onclick="loadNotes()">
+            REFRESH
+        </button>
+
+        <hr>
+
+        <h3>📁 CASE FILE</h3>
+
+        <div class="case-card">
+
+            Korban ditemukan
+            di Laboratorium.
+
+            <br><br>
+
+            Cari petunjuk dari
+            setiap lokasi untuk
+            menemukan pelaku.
+
+        </div>
+
+        <hr>
+
+        <h3>🚨 TUDUH PELAKU</h3>
+
+        <form action="/accuse" method="POST">
+
+            <input
+            type="hidden"
+            id="hiddenUser"
+            name="username">
+
+            <select name="suspect">
+
+                <option>Andi</option>
+                <option>Budi</option>
+                <option>Citra</option>
+                <option>Dinda</option>
+
+            </select>
+
+            <button type="submit">
+                ACCUSE
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+<script>
+
+function selectLocation(tile,location){
+
+    document.getElementById(
+        "location"
+    ).value = location;
+
+    document
+    .querySelectorAll(".map-tile")
+    .forEach(item=>{
+
+        item.classList.remove(
+            "active-location"
+        );
+
+    });
+
+    tile.classList.add(
+        "active-location"
+    );
+
+    document.getElementById(
+        "location-image"
+    ).src =
+    "/static/images/" +
+    location +
+    ".jpg";
+
+}
+
+</script>
 
 </body>
 </html>

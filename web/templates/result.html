@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hasil</title>
+
+<title>Hasil Investigasi</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
+
 <body>
 
-<h1>{{ result }}</h1>
+<div class="result-container">
 
-<a href="/">
-    Main Lagi
+<h1>
+🏆 HASIL INVESTIGASI
+</h1>
+
+<pre>
+{{ result }}
+</pre>
+
+<br>
+
+<a href="/game" class="start-btn">
+KEMBALI KE GAME
 </a>
+
+</div>
 
 </body>
 </html>
