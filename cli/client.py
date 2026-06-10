@@ -31,6 +31,7 @@ def receive():
             ).decode()
 
             if not message:
+
                 break
 
             print(
@@ -38,10 +39,6 @@ def receive():
             )
 
         except:
-
-            print(
-                "\nKoneksi terputus."
-            )
 
             break
 
@@ -64,6 +61,16 @@ def send():
                     "Keluar dari permainan..."
                 )
 
+                try:
+
+                    client.shutdown(
+                        socket.SHUT_RDWR
+                    )
+
+                except:
+
+                    pass
+
                 client.close()
 
                 break
@@ -78,14 +85,27 @@ def send():
                 "\nKeluar dari permainan..."
             )
 
+            try:
+
+                client.shutdown(
+                    socket.SHUT_RDWR
+                )
+
+            except:
+
+                pass
+
             client.close()
 
             break
 
 
-threading.Thread(
-    target=receive,
-    daemon=True
-).start()
+receiver = threading.Thread(
+    target=receive
+)
+
+receiver.start()
 
 send()
+
+receiver.join()
