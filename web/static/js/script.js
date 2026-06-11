@@ -195,9 +195,51 @@ function loadScore(){
 
 }
 
+function checkGameStatus(){
+
+    fetch("/game_status")
+
+    .then(r => r.json())
+
+    .then(data => {
+
+        if(data.solved){
+
+            let banner =
+            document.getElementById(
+                "winner-banner"
+            );
+
+            banner.style.display =
+            "block";
+
+            banner.innerHTML =
+
+            "🏆 CASE SOLVED!<br><br>" +
+
+            data.winner +
+
+            " berhasil memecahkan kasus!" +
+
+            "<br><br>" +
+
+            "<pre>" +
+
+            data.result +
+
+            "</pre>";
+        }
+
+    });
+
+}
 
 setInterval(loadMessages,1000);
 
 setInterval(loadScore,2000);
 
+setInterval(checkGameStatus,1000);
+
 loadMessages();
+
+checkGameStatus();

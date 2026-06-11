@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+
 import sys
 import os
 
@@ -21,6 +22,12 @@ app = Flask(__name__)
 chat_messages = []
 
 players = {}
+
+game_state = {
+    "solved": False,
+    "winner": "",
+    "result": ""
+}
 
 
 @app.route("/")
@@ -70,6 +77,12 @@ def chat():
 def messages():
 
     return jsonify(chat_messages)
+
+
+@app.route("/game_status")
+def game_status():
+
+    return jsonify(game_state)
 
 
 @app.route("/investigate", methods=["POST"])
@@ -151,6 +164,16 @@ def accuse_route():
         username,
         suspect
     )
+
+    if correct and not game_state["solved"]:
+
+        game_state["solved"] = True
+        game_state["winner"] = username
+        game_state["result"] = result
+
+        chat_messages.append(
+            f"🏆 {username} berhasil memecahkan kasus!"
+        )
 
     return render_template(
         "result.html",
