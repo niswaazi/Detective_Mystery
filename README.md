@@ -48,3 +48,15 @@ Game multiplayer bertema detektif yang dikembangkan menggunakan arsitektur *Clie
 - Chat Room Multi-User
 - Sistem Tuduhan (Accuse)
 - Versi CLI dan Web-Based
+
+## Alur Sistem
+
+1. Pemain login menggunakan nama detektif.
+2. Client terhubung ke server melalui protokol TCP.
+3. Pemain melakukan investigasi pada berbagai lokasi.
+4. Server mengirim petunjuk sesuai lokasi yang dipilih.
+5. Petunjuk disimpan pada notes pemain dan skor bertambah.
+6. Pemain dapat berkomunikasi melalui fitur chat.
+7. Pemain melihat daftar tersangka dan menganalisis petunjuk.
+8. Pemain menggunakan perintah *accuse* untuk menentukan pelaku.
+9. Server memverifikasi tuduhan dan menampilkan hasil permainan.
