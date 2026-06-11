@@ -28,3 +28,23 @@ Game multiplayer bertema detektif yang dikembangkan menggunakan arsitektur *Clie
 - Pengembangan Front-End
 - Pengujian Antarmuka Pengguna
 - Pembuatan PPT
+
+## Teknologi yang Digunakan
+
+- Python
+- TCP/IP
+- Socket Programming
+- Multi-Threading
+- Flask
+- Flask-SocketIO
+- HTML, CSS, JavaScript
+
+## Fitur Utama
+
+- Multiplayer Client-Server
+- Investigasi Lokasi
+- Sistem Petunjuk (Clues)
+- Daftar Tersangka
+- Chat Room Multi-User
+- Sistem Tuduhan (Accuse)
+- Versi CLI dan Web-Based
