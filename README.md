@@ -2,7 +2,7 @@
 
 Game multiplayer bertema detektif yang dikembangkan menggunakan arsitektur *Client-Server* dengan komunikasi *TCP Socket Programming*. Pemain berperan sebagai detektif yang harus mengumpulkan petunjuk, berdiskusi dengan pemain lain melalui fitur chat, dan menentukan pelaku kejahatan.
 
-## LINK Demo: https://youtu.be/zWTCeOakNB0*
+## LINK Demo: https://youtu.be/zWTCeOakNB0
 
 ## Anggota Kelompok
 
